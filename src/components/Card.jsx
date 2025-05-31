@@ -3,10 +3,6 @@ import { Link } from 'react-router-dom'
 
 const Card = ({snippet}) => {
 
-  // const truncate = (str, maxlength =50) =>{
-  //   str.length > maxlength ? str.slice(0, maxlength) + '...' : str
-  // }
-
   const handleStarToggle=(e)=>{
     e.preventDefault()
     const snippets=JSON.parse(localStorage.getItem('snippets')) || []
@@ -17,13 +13,25 @@ const Card = ({snippet}) => {
     window.dispatchEvent(new Event('storage'))
   }
 
+  const renderIcon = () =>{
+    if(snippet.category==='Code'){
+      return(<i className='bx bx-code mr-1' style={{color:'#0b70ef'}}></i>)
+    }
+    else if(snippet.category==='Links'){
+      return(<i className='bx bx-link mr-1' style={{color:'#0b70ef'}}></i>)
+    }
+    else if(snippet.category==='Notes'){
+      return(<i className='bx bxs-edit-alt mr-1' style={{color:'#0b70ef'}}></i>)
+    }
+  }
+
   return (
     
-      <div className='inline-block bg-white w-65 h-45 rounded-lg p-3 shadow-lg'>
+      <div className='inline-block bg-white w-65 h-45 rounded-lg p-3 shadow-lg relative'>
       <h1 className='flex flex-row font-bold text-blue-700 text-xl'>
         <Link to='/snippet-view' state={{snippet}}>
         <div className='w-53'>
-          <i className ='bx bx-note'></i>
+          <i className ='bx bx-note mr-1'></i>
           {snippet.title}
         </div>
         </Link>
@@ -36,11 +44,9 @@ const Card = ({snippet}) => {
         DD/MM/YYYY
       </h2>
       <br />
-      {/* <p className='text-gray-600'>
-          {snippet.category==='Links'? truncate(snippet.linkUrl): snippet.category==='Files'? `File: ${snippet.fileName}` : truncate(snippet.content)}
-      </p> */}
       <br />
-      <h2 className='text-blue-600'>
+      <h2 className='text-blue-600 absolute bottom-3 left-3'>
+        {renderIcon()}
         {snippet.category}
       </h2>
     </div> 

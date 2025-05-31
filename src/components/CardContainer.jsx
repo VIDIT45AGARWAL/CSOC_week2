@@ -75,15 +75,15 @@ const CardContainer = () => {
   return (
     <>
       <NavBar onSearch={setSearch}/>
-      <div className='flex flex-row'>
-          <SideBar/>
-          <div>
+      <div className='flex'>
+        <SideBar/>
+        <div className='bg-gray-300 flex flex-col' style={{height: 'calc(100vh - 100px)', width:'calc(100vw - 330px'}}>
             <Filter onFilterChange={setFilterCategory} selectedCategory={filterCategory} view={view} toggleView={toggleView}/>
-            <div className='bg-gray-300 h-159 w-301 p-8 overflow-y-auto'>      
+            <div className='bg-gray-300 p-8 overflow-y-auto' style={{height:'calc(100vh-100px)', width:'calc(100vw-330px)'}}>      
                 {renderSnippets()}
-            </div> 
-          </div>
-      </div>      
+            </div>
+        </div>
+      </div>
     </>       
   )
 }

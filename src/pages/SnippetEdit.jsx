@@ -11,7 +11,6 @@ const SnippetEdit = () => {
             title : "",
             category: 'Code',
             content : '',
-            file: null,
             linkUrl: '',
             linkTitle: '',
             language: 'cpp',
@@ -22,7 +21,6 @@ const SnippetEdit = () => {
             title: state.snippet.title || '',
             category: state.snippet.category || 'Code',
             content: state.snippet.content || '',
-            file: null,
             linkUrl: state.snippet.linkUrl || '',
             linkTitle: state.snippet.linkTitle || '',
             language: state.snippet.language || 'cpp',
@@ -30,8 +28,8 @@ const SnippetEdit = () => {
     },[state])
 
     const handleChange = (e) =>{
-        const {name, value, files} = e.target
-        setFormData((prev => ({...prev, [name]: files? files[0]: value,})))
+        const {name, value} = e.target
+        setFormData((prev => ({...prev, [name]: value,})))
     }
 
     const handleSubmit = (e) =>{
@@ -46,7 +44,6 @@ const SnippetEdit = () => {
                 linkUrl:formData.linkUrl,
                 linkTitle:formData.linkTitle,
                 language: formData.language,
-                fileName: formData.file? formData.file.name : s.fileName,
             } : s
         )
 
@@ -87,19 +84,6 @@ const SnippetEdit = () => {
                 </>
             )
         }
-        else{
-            return(
-            <>
-                <input className='hidden mx-6 border-2 p-3 w-175 border-gray-500 rounded-lg' type="file" id='file' name='file' onChange={handleChange}/>
-                <label htmlFor="file" className='mt-2 mx-6 inline-block bg-green-600 text-white rounded-lg cursor-pointer p-3 text-center'>Choose File</label>
-                {formData.file && (
-                    <div className="inline-block border-2 border-gray-500 p-3 rounded-lg mt-2 text-gray-600 text-sm">
-                    Selected: {formData.file.name}
-                    </div>
-                )}
-            </>
-            )
-        }
     }
 
 
@@ -122,7 +106,6 @@ const SnippetEdit = () => {
                     <option value="Code">Code</option>
                     <option value="Links">Links</option>
                     <option value="Notes">Notes</option>
-                    <option value="Files">Files</option>
                 </select>
              </div>
              <br />

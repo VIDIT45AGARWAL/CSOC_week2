@@ -1,8 +1,14 @@
 import React, { useEffect } from 'react'
 import Prism from 'prismjs'
-import 'prismjs/themes/prism.css'
+import 'prismjs/themes/prism.css';
+import 'prismjs/components/prism-python';
+import 'prismjs/components/prism-clike';
+import 'prismjs/components/prism-c';
+import 'prismjs/components/prism-java';
+import 'prismjs/components/prism-javascript';
 import { Link, useLocation } from 'react-router-dom'
 import NavBar from '../components/NavBar'
+import SideBar from '../components/sideBar'
 
 const SnippetView = () => {
 
@@ -30,7 +36,7 @@ const SnippetView = () => {
         if(snippet.category==='Code'){
             return(
                 <>
-                    <pre>
+                    <pre className='overflow-x-auto' style={{width: 'calc(100vw - 29rem)'}}>
                         <code className={`language-${snippet.language}`}>
                             {snippet.content}
                         </code>
@@ -58,41 +64,34 @@ const SnippetView = () => {
                 </>
             )
         }
-        else{
-            return(
-                <>
-                    <div>
-                        <p>
-                            {snippet.fileName}
-                        </p>
-                    </div>
-                </>
-            )
-        }
     }
 
   return (
     <>
     <NavBar/>
-    <div className='flex justify-center bg-gray-300 h-172 p-8'>
-        <div className='bg-white w-screen rounded-xl shadow-2xl'>
-            <h1 className='font-bold py-6  text-3xl text-center'>{snippet.title}</h1>
-            <div className='flex space-x-18 justify-center'>
-                <Link to="/snippet-edit" state={{snippet}}>
-                    <button className='bg-green-500 text-white rounded-2xl w-23 p-3 cursor-pointer'>Edit</button>
-                </Link>
-                 <button onClick={handleDelete} className='bg-red-500 text-white rounded-2xl w-23 p-3 cursor-pointer'>Delete</button>
-            </div>
-             <br />
+        <div className='flex'>
+            <SideBar/>
+            <div className='bg-gray-300 flex flex-row' style={{height: 'calc(100vh - 100px)', width:'calc(100vw - 330px'}}>
+                <div className='bg-white m-10 rounded-2xl shadow-2xl relative' style={{width: 'calc(100vw - 5rem)'}}>
+                    <h1 className='py-6 font-bold text-3xl text-center'>{snippet.title}</h1>
+                    <Link to="/">
+                        <i className='bx bx-arrow-back top-6 left-2 absolute text-4xl pl-2' style={{color:'#0b70ef'}} ></i>
+                    </Link>
 
-             <div className='mx-10 border-2 rounded-lg h-60'>
-                {bodyContent()}
-             </div>
-             <br />
-        </div>
-    </div>
-    </>
-    
+                    <div className='flex justify-center gap-10 pb-4'>
+                        <Link to="/snippet-edit" state={{snippet}}>
+                        <button className='bg-green-500 text-white rounded-2xl w-23 p-3 cursor-pointer'>Edit</button>
+                        </Link>
+                        <button onClick={handleDelete} className='bg-red-500 text-white rounded-2xl w-23 p-3 cursor-pointer'>Delete</button>
+                    </div>
+
+                    <div className='p-7 overflow-y-auto overflow-x-auto' style={{height: 'calc(100vh - 360px'}}>
+                        {bodyContent()}
+                    </div>        
+                </div>
+            </div>    
+        </div>        
+    </> 
   )
 }
 

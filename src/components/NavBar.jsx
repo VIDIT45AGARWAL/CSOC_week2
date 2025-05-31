@@ -18,7 +18,7 @@ const NavBar = ({onSearch}) => {
   
   return (
     <nav className=''>
-        <div className='bg-gradient-to-r from-purple-400 to-purple-800 flex flex-row justify-around h-25 shadow-2xl p-8'>
+        <div className='bg-gradient-to-r from-purple-400 to-purple-800 flex flex-row justify-around h-[100px] shadow-2xl p-8'>
             
             <Link to="/">
               <div className='text-xl sm:text-3xl font-bold cursor-pointer text-gray-900 select-none'>
