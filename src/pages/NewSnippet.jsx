@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import NavBar from '../components/NavBar'
 
 const NewSnippet = () => {
@@ -12,7 +12,10 @@ const NewSnippet = () => {
         linkUrl: '',
         linkTitle: '',
         language: 'cpp',
+        isStarred: false,
     })
+
+    const navigate =useNavigate()
 
     const handleChange = (e) =>{
         const {name, value, files} = e.target
@@ -46,6 +49,10 @@ const NewSnippet = () => {
             linkTitle: '',
             language: 'cpp',    
         })
+
+        setTimeout(()=>{
+            navigate('/')
+        },1000)
     }
 
     const InputRender = () =>{
@@ -122,11 +129,9 @@ const NewSnippet = () => {
                 {InputRender()}
              </div>
             
-            <Link to="/">
                 <div className='text-center mt-6 p-4'>
                     <button type='submit' className='bg-green-600 text-white w-100 rounded-lg cursor-pointer p-3 text-2xl'>Add Snippet</button>
                 </div>
-            </Link>
             
             </form>
         </div>

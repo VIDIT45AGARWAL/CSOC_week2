@@ -3,6 +3,7 @@ import Card from './Card'
 import { Link } from 'react-router-dom'
 import Filter from './Filter'
 import NavBar from './NavBar'
+import SideBar from '../components/sideBar'
 
 const CardContainer = () => {
 
@@ -12,8 +13,14 @@ const CardContainer = () => {
 
 
   useEffect(()=>{
+    const loadSnippets=()=>{
     const storedSnippets = JSON.parse(localStorage.getItem('snippets')) || []
     setSnippets(storedSnippets)
+    }
+
+    loadSnippets()
+    window.addEventListener('storage', loadSnippets)
+    return ()=> window.removeEventListener('storage', loadSnippets)
   },[])
 
 
@@ -33,16 +40,21 @@ const CardContainer = () => {
   return (
     <>
       <NavBar onSearch={setSearch}/>
-      <div className='bg-gray-300 h-172 p-8'>
-        <Filter onFilterChange={setFilterCategory} selectedCategory={filterCategory}/>
-        <div className='flex flex-wrap gap-4 justify-center'>
-          {
-            filteredSnippets.map((snippet)=>(
-              <Card key={snippet.id} snippet={snippet}/>
-            ))
-          }
-        </div>
-      </div> 
+      <div className='flex flex-row'>
+          <SideBar/>
+          <div>
+            <Filter onFilterChange={setFilterCategory} selectedCategory={filterCategory}/>
+            <div className='bg-gray-300 h-172 w-301 p-8'>      
+              <div className='flex flex-wrap gap-4'>
+                {
+                  filteredSnippets.map((snippet)=>(
+                    <Card key={snippet.id} snippet={snippet}/>
+                  ))
+                }
+              </div>
+            </div> 
+          </div>
+      </div>      
     </>       
   )
 }
