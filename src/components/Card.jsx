@@ -19,7 +19,7 @@ const Card = ({snippet}) => {
 
   return (
     
-      <div className='inline-block bg-white w-65 h-45 rounded-lg p-3'>
+      <div className='inline-block bg-white w-65 h-45 rounded-lg p-3 shadow-lg'>
       <h1 className='flex flex-row font-bold text-blue-700 text-xl'>
         <Link to='/snippet-view' state={{snippet}}>
         <div className='w-53'>

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import Filter from './Filter'
 import NavBar from './NavBar'
 import SideBar from '../components/sideBar'
+import List from './List'
 
 const CardContainer = () => {
 
@@ -11,6 +12,16 @@ const CardContainer = () => {
   const [filterCategory, setFilterCategory] =useState('All')
   const [search, setSearch]=useState('')
 
+  const [view, setView]=useState('grid')
+
+  const toggleView = ()=>{
+    if(view==='grid'){
+      setView('list')
+    }
+    else{
+      setView('grid')
+    }
+  }
 
   useEffect(()=>{
     const loadSnippets=()=>{
@@ -36,6 +47,30 @@ const CardContainer = () => {
     }
   }
 
+  const renderSnippets = () =>{
+      if(view==='grid'){
+        return(
+          <>
+            <div className='flex flex-wrap gap-4'>
+              {filteredSnippets.map((snippet)=>(
+                <Card key={snippet.id} snippet={snippet}/>
+              ))}              
+            </div>
+          </>
+        )
+      }
+      else{
+        return(
+          <>
+            <div className='flex flex-col space-y-5'>
+              {filteredSnippets.map((snippet)=>(
+                <List key={snippet.id} snippet={snippet}/>
+              ))}  
+            </div>
+          </>
+        )
+      }
+  }
 
   return (
     <>
@@ -43,15 +78,9 @@ const CardContainer = () => {
       <div className='flex flex-row'>
           <SideBar/>
           <div>
-            <Filter onFilterChange={setFilterCategory} selectedCategory={filterCategory}/>
-            <div className='bg-gray-300 h-172 w-301 p-8'>      
-              <div className='flex flex-wrap gap-4'>
-                {
-                  filteredSnippets.map((snippet)=>(
-                    <Card key={snippet.id} snippet={snippet}/>
-                  ))
-                }
-              </div>
+            <Filter onFilterChange={setFilterCategory} selectedCategory={filterCategory} view={view} toggleView={toggleView}/>
+            <div className='bg-gray-300 h-159 w-301 p-8 overflow-y-auto'>      
+                {renderSnippets()}
             </div> 
           </div>
       </div>      
