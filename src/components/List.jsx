@@ -25,6 +25,15 @@ const List = ({snippet}) => {
     }
   }
 
+  const truncateTitle=(title)=>{
+    if(title.length >16){
+      return title.slice(0,16) + '...'
+    }
+    else{
+      return title
+    }
+  }
+
 
   return (
     <>
@@ -32,14 +41,14 @@ const List = ({snippet}) => {
             <Link to='/snippet-view' state={{snippet}}>
                 <div className='text-blue-700 text-xl font-bold'>
                     <i className ='bx bx-note mr-1'></i>
-                    {snippet.title}
+                    {truncateTitle(snippet.title)}
                 </div>
             </Link>
 
-            <div className='absolute left-[750px] text-gray-600'>
+            <div className='absolute right-60 hidden lg:block text-gray-600'>
                 DD/MM/YYYY
             </div>
-            <div className='text-blue-600 absolute left-[950px]'>
+            <div className='text-blue-600 hidden lg:block absolute right-30'>
                 {renderIcon()}
                 {snippet.category}
             </div>

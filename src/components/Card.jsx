@@ -25,6 +25,15 @@ const Card = ({snippet}) => {
     }
   }
 
+  const truncateTitle=(title)=>{
+    if(title.length >16){
+      return title.slice(0,16) + '...'
+    }
+    else{
+      return title
+    }
+  }
+
   return (
     
       <div className='inline-block bg-white w-65 h-45 rounded-lg p-3 shadow-lg relative'>
@@ -32,7 +41,7 @@ const Card = ({snippet}) => {
         <Link to='/snippet-view' state={{snippet}}>
         <div className='w-53'>
           <i className ='bx bx-note mr-1'></i>
-          {snippet.title}
+          {truncateTitle(snippet.title)}
         </div>
         </Link>
         <div>

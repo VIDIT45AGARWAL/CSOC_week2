@@ -51,7 +51,7 @@ const CardContainer = () => {
       if(view==='grid'){
         return(
           <>
-            <div className='flex flex-wrap gap-4'>
+            <div className='flex flex-wrap justify-evenly gap-4'>
               {filteredSnippets.map((snippet)=>(
                 <Card key={snippet.id} snippet={snippet}/>
               ))}              
@@ -75,9 +75,9 @@ const CardContainer = () => {
   return (
     <>
       <NavBar onSearch={setSearch}/>
-      <div className='flex'>
+      <div className='flex flex-col sm:flex-row'>
         <SideBar/>
-        <div className='bg-gray-300 flex flex-col' style={{height: 'calc(100vh - 100px)', width:'calc(100vw - 330px'}}>
+        <div className='bg-gray-300 flex flex-col sm:w-[calc(100vw-330px)]' style={{height: 'calc(100vh - 100px)'}}>
             <Filter onFilterChange={setFilterCategory} selectedCategory={filterCategory} view={view} toggleView={toggleView}/>
             <div className='bg-gray-300 p-8 overflow-y-auto' style={{height:'calc(100vh-100px)', width:'calc(100vw-330px)'}}>      
                 {renderSnippets()}

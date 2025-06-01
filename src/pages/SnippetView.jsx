@@ -56,8 +56,9 @@ const SnippetView = () => {
         else if(snippet.category==='Links'){
             return(
                 <>
-                    <div>
-                        <a href={snippet.linkUrl} target='_blank'>{snippet.linkTitle}</a>
+                    <div className='text-2xl font-bold italic text-center'>
+                        {snippet.linkTitle}:
+                        <a className='ml-5 text-purple-800' href={snippet.linkUrl} target='_blank'>{snippet.linkUrl}</a>
                     </div>
                 </>
             )
