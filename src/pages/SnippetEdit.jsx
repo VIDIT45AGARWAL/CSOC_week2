@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import NavBar from '../components/NavBar'
+import { toast } from 'react-toastify'
 
 const SnippetEdit = () => {
 
@@ -51,7 +52,9 @@ const SnippetEdit = () => {
 
         setTimeout(()=>{
             navigate('/snippet-view', {state : {snippet : updatedSnippets.find((s)=> s.id=== state.snippet.id)}})
-        }, 1000)
+        }, 100)
+
+        toast.success("Snippet has been Edited", {theme:"colored"})
     }
 
     const InputRender = () =>{
@@ -115,9 +118,9 @@ const SnippetEdit = () => {
                 {InputRender()}
              </div>
             
-                <div className='text-center mt-6 p-4'>
-                    <button type='submit' className='bg-green-600 text-white w-50 rounded-lg cursor-pointer p-3 text-xl'>Save Changes</button>
-                    <button onClick={()=> navigate('/snippet-view', {state:{snippet : state.snippet}})} type='button' className='bg-red-500 text-white w-50 rounded-lg cursor-pointer p-3 text-xl'>Cancel</button>
+                <div className='flex justify-center mt-6 p-4 gap-7'>
+                    <button type='submit' className='bg-green-600 text-white w-50 rounded-lg cursor-pointer p-3 text-xl hover:bg-green-400'><i className='bx bx-save' style={{color:'#f8f9fc'}} ></i> Save Changes</button>
+                    <button onClick={()=> navigate('/snippet-view', {state:{snippet : state.snippet}})} type='button' className='bg-red-500 text-white w-50 rounded-lg cursor-pointer p-3 text-xl hover:bg-red-400'><i className='bx bx-message-square-x'></i> Cancel</button>
                 </div>            
             </form>
         </div>

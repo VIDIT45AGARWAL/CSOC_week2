@@ -6,14 +6,17 @@ import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-c';
 import 'prismjs/components/prism-java';
 import 'prismjs/components/prism-javascript';
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import NavBar from '../components/NavBar'
 import SideBar from '../components/sideBar'
+import { toast } from 'react-toastify';
 
 const SnippetView = () => {
 
     const {state} = useLocation()
-    const snippet = state.snippet 
+    const snippet = state.snippet
+    
+    const navigate=useNavigate()
 
     useEffect(()=>{
         Prism.highlightAll()
@@ -29,6 +32,12 @@ const SnippetView = () => {
         catch(error){
             console.error('Delete error: ',error)
         }
+
+        setTimeout(()=>{
+            navigate('/')
+        },100)
+
+        toast.success("Snippet has been Deleted", {theme:"colored"})
     }
 
 
@@ -80,9 +89,15 @@ const SnippetView = () => {
 
                     <div className='flex justify-center gap-10 pb-4'>
                         <Link to="/snippet-edit" state={{snippet}}>
-                        <button className='bg-green-500 text-white rounded-2xl w-23 p-3 cursor-pointer'>Edit</button>
+                        <button className='bg-green-500 text-white rounded-2xl w-23 p-3 cursor-pointer hover:bg-green-400'>
+                            <i className='bx bx-edit mr-2' style={{color:'#f8f9fc'}}></i>
+                            Edit
+                        </button>
                         </Link>
-                        <button onClick={handleDelete} className='bg-red-500 text-white rounded-2xl w-23 p-3 cursor-pointer'>Delete</button>
+                        <button onClick={handleDelete} className='bg-red-500 text-white rounded-2xl w-25 p-3 cursor-pointer hover:bg-red-400'>
+                            <i class='bx bx-trash mr-2'></i>
+                            Delete
+                        </button>
                     </div>
 
                     <div className='p-7 overflow-y-auto overflow-x-auto' style={{height: 'calc(100vh - 360px'}}>

@@ -13,6 +13,19 @@ const List = ({snippet}) => {
     window.dispatchEvent(new Event('storage'))
   }
 
+  const renderIcon = () =>{
+    if(snippet.category==='Code'){
+      return(<i className='bx bx-code mr-1' style={{color:'#0b70ef'}}></i>)
+    }
+    else if(snippet.category==='Links'){
+      return(<i className='bx bx-link mr-1' style={{color:'#0b70ef'}}></i>)
+    }
+    else if(snippet.category==='Notes'){
+      return(<i className='bx bxs-edit-alt mr-1' style={{color:'#0b70ef'}}></i>)
+    }
+  }
+
+
   return (
     <>
         <div className='bg-white flex h-15 items-center p-4 rounded-2xl shadow-lg relative'>
@@ -27,6 +40,7 @@ const List = ({snippet}) => {
                 DD/MM/YYYY
             </div>
             <div className='text-blue-600 absolute left-[950px]'>
+                {renderIcon()}
                 {snippet.category}
             </div>
             <div className='absolute right-6 text-2xl'>

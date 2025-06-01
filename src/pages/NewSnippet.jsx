@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import NavBar from '../components/NavBar'
+import { toast } from 'react-toastify'
 
 const NewSnippet = () => {
 
@@ -49,7 +50,9 @@ const NewSnippet = () => {
 
         setTimeout(()=>{
             navigate('/')
-        },1000)
+        },100)
+
+        toast.success("A new Snippet has been created", {theme: "colored"})
     }
 
     const InputRender = () =>{
@@ -113,7 +116,7 @@ const NewSnippet = () => {
              </div>
             
                 <div className='text-center mt-6 p-4'>
-                    <button type='submit' className='bg-green-600 text-white w-100 rounded-lg cursor-pointer p-3 text-2xl'>Add Snippet</button>
+                    <button type='submit' className='bg-green-600 text-white w-100 rounded-lg cursor-pointer p-3 text-2xl    hover:bg-green-400'>Add Snippet</button>
                 </div>
             
             </form>
