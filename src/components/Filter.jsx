@@ -17,7 +17,7 @@ const Filter = ({onFilterChange, selectedCategory, view, toggleView}) => {
                 <option value="Links">Links</option>
                 <option value="Notes">Notes</option>
             </select>
-            <div className='p-2 text-2xl font-bold w-12 text-center rounded-full bg-white border-2 cursor-pointer mr-10' onClick={toggleView}>
+            <div className='flex justify-center items-center rounded-full p-2 text-3xl font-bold bg-white border-2 cursor-pointer mr-10' onClick={toggleView}>
                 <i className={view==='list'? 'bx bxs-grid' :'bx bx-list-ul'}></i>
             </div>
         </div>

@@ -40,12 +40,21 @@ const SnippetView = () => {
         toast.success("Snippet has been Deleted", {theme:"colored"})
     }
 
+    const handleCopy = async () =>{
+        if(snippet.category==='Links'){
+            await navigator.clipboard.writeText(snippet.linkUrl)
+        }
+        else{
+            await navigator.clipboard.writeText(snippet.content)
+        }
+        toast.success('Copied to Clipboard!', {theme: 'colored'})
+    }
 
     const bodyContent = () =>{
         if(snippet.category==='Code'){
             return(
                 <>
-                    <pre className='overflow-x-auto  sm:w-[calc(100vw-29rem)]'>
+                    <pre className='overflow-x-auto shadow-2xl rounded-2xl  sm:w-[calc(100vw-29rem)]'>
                         <code className={`language-${snippet.language}`}>
                             {snippet.content}
                         </code>
@@ -87,8 +96,11 @@ const SnippetView = () => {
                     <Link to="/">
                         <i className='bx bx-arrow-back top-6 left-2 absolute text-4xl pl-2' style={{color:'#0b70ef'}} ></i>
                     </Link>
+                    <button className='absolute right-8 top-7 text-3xl cursor-pointer' onClick={handleCopy}>
+                            <i className='bx bx-copy hover:text-pink-400' style={{color:'#ca03ff'}} ></i>
+                    </button>
 
-                    <div className='flex justify-center gap-10 pb-4'>
+                    <div className='flex justify-center gap-10 pb-2'>
                         <Link to="/snippet-edit" state={{snippet}}>
                         <button className='bg-green-500 text-white rounded-2xl w-23 p-3 cursor-pointer hover:bg-green-400'>
                             <i className='bx bx-edit mr-2' style={{color:'#f8f9fc'}}></i>
