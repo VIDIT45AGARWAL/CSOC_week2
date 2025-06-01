@@ -45,7 +45,7 @@ const SnippetView = () => {
         if(snippet.category==='Code'){
             return(
                 <>
-                    <pre className='overflow-x-auto' style={{width: 'calc(100vw - 29rem)'}}>
+                    <pre className='overflow-x-auto  sm:w-[calc(100vw-29rem)]'>
                         <code className={`language-${snippet.language}`}>
                             {snippet.content}
                         </code>
@@ -79,9 +79,9 @@ const SnippetView = () => {
   return (
     <>
     <NavBar/>
-        <div className='flex'>
+        <div className='flex flex-col sm:flex-row'>
             <SideBar/>
-            <div className='bg-gray-300 flex flex-row' style={{height: 'calc(100vh - 100px)', width:'calc(100vw - 330px'}}>
+            <div className='bg-gray-300 flex flex-row sm:w-[calc(100vw-330px)]' style={{height: 'calc(100vh - 100px)'}}>
                 <div className='bg-white m-10 rounded-2xl shadow-2xl relative' style={{width: 'calc(100vw - 5rem)'}}>
                     <h1 className='py-6 font-bold text-3xl text-center'>{snippet.title}</h1>
                     <Link to="/">

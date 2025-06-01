@@ -39,7 +39,7 @@ const NavBar = ({onSearch}) => {
         </div>
         <div className='bg-gradient-to-r from-purple-400 to-purple-800 flex flex-row lg:hidden justify-center p-3'>
           <form onSubmit={handleSearchSubmit} className='flex'>
-                <input value={search} onChange={handleSearchChange} className='bg-white rounded-l-2xl h-7 w-70 sm:h-9 p-3 sm:w-110' type="search" placeholder='Search Snippet Title' aria-label='Search' />
+                <input value={search} onChange={handleSearchChange} className='bg-white rounded-l-2xl h-7 w-50 sm:h-9 p-3 sm:w-110' type="search" placeholder='Search Snippet Title' aria-label='Search' />
                 <button type='submit' className='cursor-pointer bg-green-500 h-7 sm:h-9 hover:bg-green-400 w-15 sm:w-20 rounded-r-2xl '>Search</button>
           </form>
         </div>

@@ -11,7 +11,7 @@ const Filter = ({onFilterChange, selectedCategory, view, toggleView}) => {
   return (
     <>
         <div className='pt-2 mb-2 flex  items-center justify-end bg-gray-300' style={{width:'calc(100vw-330px'}}>
-            <select className='w-80 sm:w-120 h-12 border-2 rounded-lg bg-white ml-10 mr-auto' value={selectedCategory} onChange={handleChange}>
+            <select className='w-40 lg:w-80 h-12 border-2 rounded-lg bg-white ml-10 mr-auto' value={selectedCategory} onChange={handleChange}>
                 <option value="All" selected>All</option>
                 <option value="Code">Code</option>
                 <option value="Links">Links</option>
