@@ -23,7 +23,7 @@ const NavBar = ({onSearch}) => {
             <Link to="/">
               <div className='text-xl sm:text-3xl font-bold cursor-pointer text-gray-900 select-none'>
                 <i class='bx bxs-file-export'></i>
-                SnippetHub
+                SnippetHUB
                 </div>
             </Link>
               <form onSubmit={handleSearchSubmit} className='flex'>
