@@ -107,7 +107,7 @@ const SnippetView = () => {
                             Edit
                         </button>
                         </Link>
-                        <button onClick={handleDelete} className='bg-red-500 text-white rounded-2xl w-25 p-3 cursor-pointer hover:bg-red-400'>
+                        <button onClick={handleDelete} className='bg-blue-500 text-white rounded-2xl w-25 p-3 cursor-pointer hover:bg-blue-400'>
                             <i class='bx bx-trash mr-2'></i>
                             Delete
                         </button>

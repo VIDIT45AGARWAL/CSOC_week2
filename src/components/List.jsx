@@ -15,13 +15,13 @@ const List = ({snippet}) => {
 
   const renderIcon = () =>{
     if(snippet.category==='Code'){
-      return(<i className='bx bx-code mr-1' style={{color:'#0b70ef'}}></i>)
+      return(<i className='bx bx-code mr-1 text-blue-600'></i>)
     }
     else if(snippet.category==='Links'){
-      return(<i className='bx bx-link mr-1' style={{color:'#0b70ef'}}></i>)
+      return(<i className='bx bx-link mr-1 text-violet-600'></i>)
     }
     else if(snippet.category==='Notes'){
-      return(<i className='bx bxs-edit-alt mr-1' style={{color:'#0b70ef'}}></i>)
+      return(<i className='bx bxs-edit-alt mr-1 text-green-600'></i>)
     }
   }
 
@@ -34,17 +34,29 @@ const List = ({snippet}) => {
     }
   }
 
+  const chooseColor=()=>{
+    if(snippet.category==='Notes'){
+      return `green-600`
+    }
+    else if(snippet.category==='Links'){
+      return `violet-600`
+    }
+    else if(snippet.category==='Code'){
+      return `blue-600`
+    }
+  }
+
 
   return (
     <>
         <div className='bg-white flex h-15 items-center p-4 rounded-2xl shadow-lg relative'>
             <Link to='/snippet-view' state={{snippet}}>
-                <div className='text-blue-700 text-xl font-bold'>
+                <div className={`text-${chooseColor()} text-xl font-bold`}>
                     <i className ='bx bx-note mr-1'></i>
                     {truncateTitle(snippet.title)}
                 </div>
             </Link>
-            <div className='text-blue-600 hidden lg:block absolute right-30'>
+            <div className={`text-${chooseColor()} hidden lg:block absolute right-30`}>
                 {renderIcon()}
                 {snippet.category}
             </div>

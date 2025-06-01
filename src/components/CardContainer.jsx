@@ -51,7 +51,7 @@ const CardContainer = () => {
       if(view==='grid'){
         return(
           <>
-            <div className='flex flex-wrap justify-evenly gap-4'>
+            <div className='flex flex-wrap gap-4'>
               {filteredSnippets.map((snippet)=>(
                 <Card key={snippet.id} snippet={snippet}/>
               ))}              

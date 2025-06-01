@@ -15,13 +15,13 @@ const Card = ({snippet}) => {
 
   const renderIcon = () =>{
     if(snippet.category==='Code'){
-      return(<i className='bx bx-code mr-1' style={{color:'#0b70ef'}}></i>)
+      return(<i className='bx bx-code mr-1 text-blue-600'></i>)
     }
     else if(snippet.category==='Links'){
-      return(<i className='bx bx-link mr-1' style={{color:'#0b70ef'}}></i>)
+      return(<i className='bx bx-link mr-1 text-violet-600'></i>)
     }
     else if(snippet.category==='Notes'){
-      return(<i className='bx bxs-edit-alt mr-1' style={{color:'#0b70ef'}}></i>)
+      return(<i className='bx bxs-edit-alt mr-1 text-green-600'></i>)
     }
   }
 
@@ -34,10 +34,22 @@ const Card = ({snippet}) => {
     }
   }
 
+  const chooseColor=()=>{
+    if(snippet.category==='Notes'){
+      return `green-600`
+    }
+    else if(snippet.category==='Links'){
+      return `violet-600`
+    }
+    else if(snippet.category==='Code'){
+      return `blue-600`
+    }
+  }
+
   return (
     
       <div className='inline-block bg-white w-65 h-45 rounded-lg p-3 shadow-lg relative'>
-      <h1 className='flex flex-row font-bold text-blue-700 text-xl'>
+      <h1 className={`flex flex-row font-bold text-${chooseColor()} text-xl`}>
         <Link to='/snippet-view' state={{snippet}}>
         <div className='w-53'>
           <i className ='bx bx-note mr-1'></i>
@@ -51,7 +63,7 @@ const Card = ({snippet}) => {
       </h1>
       <br />
       <br />
-      <h2 className='text-blue-600 absolute bottom-3 left-3'>
+      <h2 className={`text-${chooseColor()} absolute bottom-3 left-3`}>
         {renderIcon()}
         {snippet.category}
       </h2>
