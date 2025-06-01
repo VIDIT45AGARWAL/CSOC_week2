@@ -49,9 +49,6 @@ const Card = ({snippet}) => {
         </div>
            
       </h1>
-      <h2 className='text-gray-600'>
-        DD/MM/YYYY
-      </h2>
       <br />
       <br />
       <h2 className='text-blue-600 absolute bottom-3 left-3'>

@@ -44,10 +44,6 @@ const List = ({snippet}) => {
                     {truncateTitle(snippet.title)}
                 </div>
             </Link>
-
-            <div className='absolute right-60 hidden lg:block text-gray-600'>
-                DD/MM/YYYY
-            </div>
             <div className='text-blue-600 hidden lg:block absolute right-30'>
                 {renderIcon()}
                 {snippet.category}
